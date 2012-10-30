@@ -1,6 +1,8 @@
-#-------------------------------------------------------------------------------
+﻿#-------------------------------------------------------------------------------
 # Name:        module1
 # Purpose:     read ASN edi files and count the SN1(item) and MAN(package)
+#              SN1**qty*uom
+#              MAN*GM*....
 #
 # Author:      czhu
 #
@@ -32,13 +34,15 @@ def readEdi(fileList):
         cartonCount = 0
         #loop the lines
         while line:
+
             if line.split('*')[0] == "BSN":
                 asnName = line.split('*')[2]
                 #print asnName
 
             if line.split('*')[0] == "SN1":
 		        #print line.split('*')[2]
-		        itemCount += int(line.split('*')[2])
+                print line.split('*')
+                itemCount += int(line.split('*')[2])
 
             if line.split('*')[0] == "MAN":
                 cartonCount+=1
